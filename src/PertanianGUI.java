@@ -2,6 +2,9 @@
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -14,14 +17,43 @@ import javax.swing.table.DefaultTableModel;
  * @author ACER
  */
 public class PertanianGUI extends javax.swing.JFrame {
-
+    
+    private void showData(){
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("No. ");
+        model.addColumn("nama_bibt");
+        model.addColumn("harga_bibit");
+        model.addColumn("nama_pupuk");
+        model.addColumn("berat");
+        model.addColumn("harga_jual");
+        
+        try{
+            int no = 1;
+            String sql = "SELECT * FROM tani";
+            java.sql.Connection conn = (Connection)koneksi.configDB();
+            java.sql.Statement stm = conn.createStatement();
+            java.sql.ResultSet res = stm.executeQuery(sql);
+            
+            while (res.next()){
+                model.addRow(new Object[]{no++,res.getString(1),res.getString(2),res.getString(3),res.getString(4),res.getString(5)});
+            }
+            tabelTani.setModel(model);
+            
+        }catch(SQLException e){
+            System.out.println("Error : "+e.getMessage());
+        } 
+        
+    
+        
+    }
     /**
      * Creates new form PertanianGUI
      */
     public PertanianGUI() {
         initComponents();
+        showData();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -262,7 +294,7 @@ public class PertanianGUI extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel11))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tf_pupukNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
@@ -577,9 +609,9 @@ public class PertanianGUI extends javax.swing.JFrame {
 
         jLabel35.setText(" ");
 
-        jLabel39.setText("Selidih Pendapatan =");
+        jLabel39.setText("Selisih Pendapatan ");
 
-        labelselisih.setText("Selidih Pendapatan");
+        labelselisih.setText("Selisih Pendapatan");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -684,7 +716,7 @@ public class PertanianGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+        //Save
     private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
         //Bibit
         String namaBibit=tf_bibitNama.getText().trim();
@@ -874,8 +906,6 @@ public class PertanianGUI extends javax.swing.JFrame {
         //Periode Panen
         tf_bandingpp1.setText("");
         tf_bandingpp2.setText("");
-        
-        
         
     }//GEN-LAST:event_btn_svActionPerformed
 
