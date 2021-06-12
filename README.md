@@ -7,7 +7,7 @@ Anggota :
 
 Daffa Amanullah (A11.2019.11993) @DrugFFa
 
-Rahadiyan Arifianto (A11.2019.12004) @ Discarius
+Rahadiyan Arifianto (A11.2019.12004) @Discarius
 
 Zidan Saifullah (A11.2019.12049) @Lilact-glitch
 
