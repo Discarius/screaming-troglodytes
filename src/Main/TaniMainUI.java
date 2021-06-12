@@ -353,7 +353,7 @@ public class TaniMainUI extends javax.swing.JFrame {
 
     private void jb_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_deleteActionPerformed
         try{
-            String sql="DELETE FROM data_tani WHERE nama_bibit='"+tf_bibitNama.getText().trim()+"'";
+            String sql="DELETE FROM data_tani WHERE nama_bibit='"+tf_bibitNama.getText().trim()+"' AND harga_bibit='"+tf_bibitHarga.getText().trim()+"' AND biaya_perawatan='"+tf_biayaPerawatan.getText().trim()+"' ";
             java.sql.Connection conn=(Connection)Connect.configDB();
             java.sql.PreparedStatement pstm=conn.prepareStatement(sql);
             pstm.execute();
