@@ -153,14 +153,11 @@ public class TaniMainUI extends javax.swing.JFrame {
                         .addGap(30, 30, 30)
                         .addComponent(jb_update, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
+                        .addGap(60, 60, 60)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel6))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel6)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
@@ -355,7 +352,17 @@ public class TaniMainUI extends javax.swing.JFrame {
     }//GEN-LAST:event_tb_dataTaniMouseClicked
 
     private void jb_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_deleteActionPerformed
-        
+        try{
+            String sql="DELETE FROM data_tani WHERE nama_bibit='"+tf_bibitNama.getText().trim()+"'";
+            java.sql.Connection conn=(Connection)Connect.configDB();
+            java.sql.PreparedStatement pstm=conn.prepareStatement(sql);
+            pstm.execute();
+            JOptionPane.showMessageDialog(null,"Data successfully deleted...");
+            showInfo();
+            clearForm();
+        }catch (HeadlessException|SQLException e){
+            JOptionPane.showMessageDialog(this,e.getMessage());
+        }
     }//GEN-LAST:event_jb_deleteActionPerformed
 
     private void jb_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_updateActionPerformed
@@ -385,9 +392,9 @@ public class TaniMainUI extends javax.swing.JFrame {
         double kKotor=((tHasil-mdl)/mdl);
         String rasioKKotor=String.valueOf(kKotor);
         
-        //simpan data
+        //update data
         try{
-            String sql="UPDATE data_tani SET nama_bibit='"+bibitNama+"', harga_bibit='"+bibitHarga+"', biaya_perawatan='"+biayaPerawatan+"', modal='"+modal+"', hasil_kg='"+hasilBerat+"', hasil_harga_kg'"+hasilHarga+"', total_hasil='"+totalHasil+"', ratio_kotor='"+rasioKKotor+"' WHERE nama_bibit='"+bibitNama+"'";
+            String sql="UPDATE data_tani SET harga_bibit='"+bibitHarga+"', biaya_perawatan='"+biayaPerawatan+"', modal='"+modal+"', hasil_kg='"+hasilBerat+"', hasil_harga_kg='"+hasilHarga+"', total_hasil='"+totalHasil+"', ratio_kotor='"+rasioKKotor+"' WHERE nama_bibit='"+bibitNama+"'";
             java.sql.Connection conn=(Connection)Connect.configDB();
             java.sql.PreparedStatement pstm=conn.prepareStatement(sql);
             pstm.execute();
