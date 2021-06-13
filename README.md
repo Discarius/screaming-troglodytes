@@ -5,7 +5,7 @@ Judul : Sistem Pencatatan dan Evaluasi Hasil Pertanian
 
 Anggota :
 
-Daffa Amanullah (A11.2019.11993) @DrugFFa
+Daffa Amanullah (A11.2019.11993) @DrugFFa / @Daff
 
 Rahadiyan Arifianto (A11.2019.12004) @Discarius
 
