@@ -10,12 +10,17 @@ import java.sql.Connection;
 import javax.swing.table.DefaultTableModel;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import java.awt.Color;
+
+import javax.swing.JFrame;
 /**
  *
  * @author ACER
  */
+
+
 public class TaniMainUI extends javax.swing.JFrame {
-    
+   
     private void clearForm(){
         //mengkosongkan textfield di input tab
         tf_bibitNama.setText(null);
@@ -77,9 +82,8 @@ public class TaniMainUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        canvas1 = new java.awt.Canvas();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel21 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         tf_bibitNama = new javax.swing.JTextField();
@@ -113,29 +117,14 @@ public class TaniMainUI extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel21 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/sphp.PNG"))); // NOI18N
+        jTabbedPane1.setBackground(new java.awt.Color(214, 217, 223));
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addComponent(jLabel21)
-                .addContainerGap(111, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(143, 143, 143)
-                .addComponent(jLabel21)
-                .addContainerGap(160, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Welcome", jPanel4);
+        jPanel1.setBackground(new java.awt.Color(214, 217, 223));
 
         jLabel1.setText("Nama");
 
@@ -256,6 +245,8 @@ public class TaniMainUI extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Input UI", jPanel1);
 
+        jPanel2.setBackground(new java.awt.Color(214, 217, 223));
+
         tb_dataTani.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -322,6 +313,8 @@ public class TaniMainUI extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Info Table", jPanel2);
+
+        jPanel3.setBackground(new java.awt.Color(214, 217, 223));
 
         jLabel9.setText("Sistem Pencatatan Hasil Pertanian");
 
@@ -393,14 +386,36 @@ public class TaniMainUI extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("About Us", jPanel3);
 
+        jPanel4.setBackground(new java.awt.Color(214, 217, 223));
+
+        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/sphp.PNG"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addComponent(jLabel21)
+                .addContainerGap(111, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(143, 143, 143)
+                .addComponent(jLabel21)
+                .addContainerGap(158, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Welcome", jPanel4);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 841, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 841, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -572,11 +587,13 @@ public class TaniMainUI extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new TaniMainUI().setVisible(true);
+                
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private java.awt.Canvas canvas1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
