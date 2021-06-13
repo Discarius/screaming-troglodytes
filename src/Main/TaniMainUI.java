@@ -28,6 +28,7 @@ public class TaniMainUI extends javax.swing.JFrame {
     private void showInfo(){
         //bikin tabel
         DefaultTableModel model=new DefaultTableModel();
+        model.addColumn("No.");
         model.addColumn("Tanaman");
         model.addColumn("Harga Bibit");
         model.addColumn("Perawatan");
@@ -37,15 +38,17 @@ public class TaniMainUI extends javax.swing.JFrame {
         model.addColumn("Total Hasil");
         model.addColumn("Ratio Kotor");
         
+        
         try{
             //fetch info dari tabel dbase
+            int no = 1;
             String sql="SELECT nama_bibit, harga_bibit, biaya_perawatan, modal, hasil_kg, hasil_harga_kg, total_hasil, ratio_kotor FROM data_tani";
             java.sql.Connection conn=(Connection)Connect.configDB();
             java.sql.Statement stm=conn.createStatement();
             java.sql.ResultSet res=stm.executeQuery(sql);
             
             while(res.next()){
-                model.addRow(new Object[]{res.getString(1),res.getString(2),res.getString(3),res.getString(4),res.getString(5),res.getString(6),res.getString(7),res.getString(8)});
+                model.addRow(new Object[]{no++,res.getString(1),res.getString(2),res.getString(3),res.getString(4),res.getString(5),res.getString(6),res.getString(7),res.getString(8)});
             }
             
             tb_dataTani.setModel(model);
@@ -230,11 +233,11 @@ public class TaniMainUI extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(tf_bibitHarga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
                     .addComponent(tf_biayaPerawatan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -248,7 +251,7 @@ public class TaniMainUI extends javax.swing.JFrame {
                     .addComponent(jb_clear, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jb_save, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jb_update, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Input UI", jPanel1);
@@ -258,7 +261,7 @@ public class TaniMainUI extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Tanaman", "Harga Bibit", "Perawatan", "Modal", "Berat (Kg)", "Harga/Kg", "Hasil", "Ratio Kotor"
+                "No.", "Tanaman", "Harga Bibit", "Perawatan", "Modal", "Berat (Kg)", "Harga/Kg", "Hasil", "Ratio Kotor"
             }
         ));
         tb_dataTani.setColumnSelectionAllowed(true);
@@ -395,17 +398,19 @@ public class TaniMainUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 841, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 556, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void tf_bibitNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_bibitNamaActionPerformed
@@ -436,7 +441,7 @@ public class TaniMainUI extends javax.swing.JFrame {
         String hasilBerat=String.valueOf(hBerat);
         double hHarga=Double.valueOf(tf_hasilHarga.getText().trim());
         String hasilHarga=String.valueOf(hHarga);
-        double tHasil=hBerat+hHarga;
+        double tHasil=hBerat*hHarga;
         String totalHasil=String.valueOf(tHasil);
         
         //rasio keuntungan kotor
@@ -445,7 +450,7 @@ public class TaniMainUI extends javax.swing.JFrame {
         
         //simpan data
         try{
-            String sql="INSERT INTO data_tani VALUES('"+bibitNama+"','"+bibitHarga+"','"+biayaPerawatan+"','"+modal+"','"+hasilBerat+"','"+hasilHarga+"','"+totalHasil+"','"+rasioKKotor+"')";
+            String sql="INSERT INTO data_tani VALUES(no, '"+bibitNama+"','"+bibitHarga+"','"+biayaPerawatan+"','"+modal+"','"+hasilBerat+"','"+hasilHarga+"','"+totalHasil+"','"+rasioKKotor+"')";
             java.sql.Connection conn=(Connection)Connect.configDB();
             java.sql.PreparedStatement pstm=conn.prepareStatement(sql);
             pstm.execute();
@@ -478,7 +483,7 @@ public class TaniMainUI extends javax.swing.JFrame {
         String hasilBerat=String.valueOf(hBerat);
         double hHarga=Double.valueOf(tf_hasilHarga.getText().trim());
         String hasilHarga=String.valueOf(hHarga);
-        double tHasil=hBerat+hHarga;
+        double tHasil=hBerat*hHarga;
         String totalHasil=String.valueOf(tHasil);
         
         //rasio keuntungan kotor
@@ -502,19 +507,19 @@ public class TaniMainUI extends javax.swing.JFrame {
     private void tb_dataTaniMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_dataTaniMouseClicked
         //tampilkan baris yang diklik
         int row=tb_dataTani.rowAtPoint(evt.getPoint());
-        String namBit=tb_dataTani.getValueAt(row, 0).toString();
+        String namBit=tb_dataTani.getValueAt(row, 1).toString();
         tf_bibitNama.setText(namBit);
 
-        String harBit=tb_dataTani.getValueAt(row, 1).toString();
+        String harBit=tb_dataTani.getValueAt(row, 2).toString();
         tf_bibitHarga.setText(harBit);
 
-        String biPer=tb_dataTani.getValueAt(row, 2).toString();
+        String biPer=tb_dataTani.getValueAt(row, 3).toString();
         tf_biayaPerawatan.setText(biPer);
 
-        String hasBer=tb_dataTani.getValueAt(row, 4).toString();
+        String hasBer=tb_dataTani.getValueAt(row, 5).toString();
         tf_hasilBerat.setText(hasBer);
 
-        String hasHar=tb_dataTani.getValueAt(row, 5).toString();
+        String hasHar=tb_dataTani.getValueAt(row, 6).toString();
         tf_hasilHarga.setText(hasHar);
     }//GEN-LAST:event_tb_dataTaniMouseClicked
 
@@ -547,7 +552,7 @@ public class TaniMainUI extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
