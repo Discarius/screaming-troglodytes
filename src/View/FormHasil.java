@@ -62,6 +62,7 @@ public class FormHasil extends javax.swing.JFrame {
         btn_delete = new javax.swing.JButton();
         btn_search = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        btn_refresh = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -142,13 +143,12 @@ public class FormHasil extends javax.swing.JFrame {
                                 .addComponent(tf_hasil)
                                 .addComponent(tf_perawatan)
                                 .addComponent(tf_nama)
-                                .addComponent(tf_no)))))
-                .addContainerGap(372, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel4))
+                                .addComponent(tf_no))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel4))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -228,6 +228,13 @@ public class FormHasil extends javax.swing.JFrame {
 
         jLabel3.setText("Search");
 
+        btn_refresh.setLabel("Refresh");
+        btn_refresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_refreshActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -239,8 +246,10 @@ public class FormHasil extends javax.swing.JFrame {
                 .addGap(49, 49, 49)
                 .addComponent(tf_search, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49)
-                .addComponent(btn_search)
-                .addGap(49, 49, 49)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btn_refresh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_search, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(43, 43, 43)
                 .addComponent(btn_delete)
                 .addGap(0, 405, Short.MAX_VALUE))
         );
@@ -255,8 +264,12 @@ public class FormHasil extends javax.swing.JFrame {
                     .addComponent(btn_search)
                     .addComponent(jLabel3)
                     .addComponent(btn_delete))
-                .addGap(113, 113, 113))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_refresh)
+                .addGap(84, 84, 84))
         );
+
+        btn_refresh.getAccessibleContext().setAccessibleName("Refresh");
 
         jTabbedPane2.addTab("Info Tabel", jPanel3);
 
@@ -316,6 +329,10 @@ public class FormHasil extends javax.swing.JFrame {
         cb.cariNama();
     }//GEN-LAST:event_btn_searchActionPerformed
 
+    private void btn_refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_refreshActionPerformed
+        cb.isiTabel();
+    }//GEN-LAST:event_btn_refreshActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -356,6 +373,7 @@ public class FormHasil extends javax.swing.JFrame {
     private javax.swing.JButton btn_clear;
     private javax.swing.JButton btn_delete;
     private javax.swing.JButton btn_insert;
+    private javax.swing.JButton btn_refresh;
     private javax.swing.JButton btn_search;
     private javax.swing.JButton btn_update;
     private javax.swing.JLabel jLabel10;

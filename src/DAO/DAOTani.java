@@ -32,13 +32,13 @@ public class DAOTani implements ImplementTani{
     //SQL QUERY =======================================
     final String insert = "INSERT INTO data_tani (nama_bibit, harga_bibit, biaya_perawatan, hasil_kg, hasil_harga_kg, modal, total_hasil, ratio_kotor) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     
-    final String delete = "DELETE FROM data_tani WHERE no='?'";
+    final String delete = "DELETE FROM data_tani WHERE no=?";
     
-    final String update = "UPDATE data_tani SET nama_bibit=?, harga_bibit=?, biaya_perawatan=?, hasil_kg=?, hasil_harga_kg=?, modal=?, total_hasil=?, ratio_kotor=? WHERE no='?'";
+    final String update = "UPDATE data_tani SET nama_bibit=?, harga_bibit=?, biaya_perawatan=?, hasil_kg=?, hasil_harga_kg=?, modal=?, total_hasil=?, ratio_kotor=? WHERE no=?";
     
     final String select = "SELECT * FROM data_tani";
     
-    final String CariNama = "SELECT * FROM data_tani WHERE nama_bibit like '?'";    
+    final String CariNama = "SELECT * FROM data_tani WHERE nama_bibit like ?";    
     
     //INSERT =======================================
     @Override
@@ -106,6 +106,7 @@ public class DAOTani implements ImplementTani{
             statement.setDouble(6, mb.getModal());
             statement.setDouble(7, mb.getTotal_hasil());
             statement.setDouble(8, mb.getRatio_kotor());
+            statement.setInt(9, mb.getNo());
             statement.executeUpdate();
         } catch (SQLException ex){
             ex.printStackTrace();
