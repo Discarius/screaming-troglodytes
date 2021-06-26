@@ -21,22 +21,18 @@ public class ModTblTani extends AbstractTableModel{
     }
     
     
-    
     @Override
     public int getRowCount() {
         return lmb.size();
-        
     }
 
     @Override
     public int getColumnCount() {
-        return 9;
-        
+        return 9;   
     }
 
     @Override
     public Object getValueAt(int row, int column) {
-
         switch(column){
             case 0:
                 return lmb.get(row).getNo();
@@ -47,18 +43,17 @@ public class ModTblTani extends AbstractTableModel{
             case 3:
                 return lmb.get(row).getBiaya_perawatan();
             case 4:
-                return lmb.get(row).getModal();
-            case 5:
                 return lmb.get(row).getHasil_kg();
-            case 6:
+            case 5:
                 return lmb.get(row).getHasil_harga_kg();
+            case 6:
+                return lmb.get(row).getModal();
             case 7:
                 return lmb.get(row).getTotal_hasil();
             case 8:
                 return lmb.get(row).getRatio_kotor();
             default:
-                return null;
-                
+                return null;       
         }
     }
 
@@ -66,28 +61,26 @@ public class ModTblTani extends AbstractTableModel{
     public String getColumnName(int column) {
         switch(column){
             case 0:
-                return "no";
+                return "No";
             case 1:
-                return "nama_bibit";
+                return "Tanaman";
             case 2:
-                return "harga_bibit";
+                return "Harga Bibit";
             case 3:
-                return "biaya_perawatan";
+                return "Perawatan";
             case 4:
-                return "modal";
+                return "Berat Panen";
             case 5:
-                return "hasil_kg";
+                return "Harga / Kg";
             case 6:
-                return "hasil_harga_kg";
+                return "Modal";
             case 7:
-                return "total_hasil";
+                return "Total Hasil";
             case 8:
-                return "ratio_kotor";
+                return "Ratio Kotor";
             default:
                 return null;
         }
     }
-    
-    
     
 }

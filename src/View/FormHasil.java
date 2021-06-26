@@ -5,9 +5,8 @@
  */
 package View;
 
+import Controller.ControllerTani;
 import javax.swing.JButton;
-import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -17,11 +16,16 @@ import javax.swing.JTextField;
  */
 public class FormHasil extends javax.swing.JFrame {
 
+    ControllerTani cb;
     /**
      * Creates new form FormHasil
      */
     public FormHasil() {
         initComponents();
+        tf_no.setEditable(false);
+        tf_no.setEnabled(false);
+        cb=new ControllerTani(this);
+        cb.isiTabel();
     }
 
     /**
@@ -49,14 +53,14 @@ public class FormHasil extends javax.swing.JFrame {
         btn_clear = new javax.swing.JButton();
         btn_insert = new javax.swing.JButton();
         btn_update = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        tf_no = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         tf_search = new javax.swing.JTextField();
         btn_delete = new javax.swing.JButton();
         btn_search = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -87,10 +91,26 @@ public class FormHasil extends javax.swing.JFrame {
         });
 
         btn_insert.setText("Save");
+        btn_insert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_insertActionPerformed(evt);
+            }
+        });
 
         btn_update.setText("Update");
+        btn_update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_updateActionPerformed(evt);
+            }
+        });
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/seed.PNG"))); // NOI18N
+        jLabel4.setText("No.");
+
+        tf_no.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_noActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -113,22 +133,22 @@ public class FormHasil extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(tf_hargabbt, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(145, 145, 145)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btn_insert)
-                                    .addComponent(btn_update)
-                                    .addComponent(btn_clear)))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(tf_hargakg, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                                    .addComponent(tf_hasil)
-                                    .addComponent(tf_perawatan)
-                                    .addComponent(tf_nama))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 373, Short.MAX_VALUE)
-                                .addComponent(jLabel2)))))
-                .addGap(73, 73, 73))
+                                    .addComponent(btn_update, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btn_insert, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btn_clear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(tf_hargakg, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                .addComponent(tf_hasil)
+                                .addComponent(tf_perawatan)
+                                .addComponent(tf_nama)
+                                .addComponent(tf_no)))))
+                .addContainerGap(372, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel10)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel4))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -136,7 +156,11 @@ public class FormHasil extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jLabel13)
-                .addGap(43, 43, 43)
+                .addGap(31, 31, 31)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(tf_no, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(tf_nama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -146,26 +170,20 @@ public class FormHasil extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addComponent(tf_hargabbt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_insert))
-                .addGap(28, 28, 28)
+                .addGap(31, 31, 31)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(tf_perawatan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_update))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
-                        .addGap(49, 49, 49))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel10)
-                            .addComponent(tf_hasil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(28, 28, 28)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel11)
-                            .addComponent(tf_hargakg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(160, 160, 160))))
+                .addGap(31, 31, 31)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(tf_hasil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(tf_hargakg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(160, 160, 160))
         );
 
         jTabbedPane2.addTab("Input Data", jPanel2);
@@ -181,6 +199,11 @@ public class FormHasil extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         tf_search.addActionListener(new java.awt.event.ActionListener() {
@@ -190,10 +213,18 @@ public class FormHasil extends javax.swing.JFrame {
         });
 
         btn_delete.setText("Delete");
+        btn_delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_deleteActionPerformed(evt);
+            }
+        });
 
         btn_search.setText("Search");
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/seed.PNG"))); // NOI18N
+        btn_search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_searchActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Search");
 
@@ -201,38 +232,30 @@ public class FormHasil extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btn_delete)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(tf_search, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(34, 34, 34)
-                                .addComponent(btn_search))
-                            .addComponent(jLabel3)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(82, 82, 82)
-                        .addComponent(jLabel1)))
-                .addGap(0, 157, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3)
-                .addGap(13, 13, 13)
+                .addGap(49, 49, 49)
+                .addComponent(tf_search, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49)
+                .addComponent(btn_search)
+                .addGap(49, 49, 49)
+                .addComponent(btn_delete)
+                .addGap(0, 405, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tf_search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_search))
-                .addGap(40, 40, 40)
-                .addComponent(btn_delete)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(104, 104, 104))
+                    .addComponent(btn_search)
+                    .addComponent(jLabel3)
+                    .addComponent(btn_delete))
+                .addGap(113, 113, 113))
         );
 
         jTabbedPane2.addTab("Info Tabel", jPanel3);
@@ -245,7 +268,7 @@ public class FormHasil extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)
+            .addComponent(jTabbedPane2)
         );
 
         pack();
@@ -256,12 +279,42 @@ public class FormHasil extends javax.swing.JFrame {
     }//GEN-LAST:event_tf_namaActionPerformed
 
     private void btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearActionPerformed
-        // TODO add your handling code here:
+        cb.reset();
     }//GEN-LAST:event_btn_clearActionPerformed
 
     private void tf_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_searchActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tf_searchActionPerformed
+
+    private void tf_noActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_noActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_noActionPerformed
+
+    private void btn_insertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_insertActionPerformed
+        cb.insert();
+        cb.isiTabel();
+        cb.reset();
+    }//GEN-LAST:event_btn_insertActionPerformed
+
+    private void btn_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteActionPerformed
+        cb.delete();
+        cb.isiTabel();
+        cb.reset();
+    }//GEN-LAST:event_btn_deleteActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        cb.isiField(jTable1.getSelectedRow());
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
+        cb.update();
+        cb.isiTabel();
+        cb.reset();
+    }//GEN-LAST:event_btn_updateActionPerformed
+
+    private void btn_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_searchActionPerformed
+        cb.cariNama();
+    }//GEN-LAST:event_btn_searchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -292,6 +345,7 @@ public class FormHasil extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new FormHasil().setVisible(true);
             }
@@ -304,12 +358,11 @@ public class FormHasil extends javax.swing.JFrame {
     private javax.swing.JButton btn_insert;
     private javax.swing.JButton btn_search;
     private javax.swing.JButton btn_update;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -322,14 +375,15 @@ public class FormHasil extends javax.swing.JFrame {
     private javax.swing.JTextField tf_hargakg;
     private javax.swing.JTextField tf_hasil;
     private javax.swing.JTextField tf_nama;
+    private javax.swing.JTextField tf_no;
     private javax.swing.JTextField tf_perawatan;
     private javax.swing.JTextField tf_search;
     // End of variables declaration//GEN-END:variables
 
+    //TOMBOL =======================================
     public JButton getBtn_clear() {
         return btn_clear;
     }
-
     public void setBtn_clear(JButton btn_clear) {
         this.btn_clear = btn_clear;
     }
@@ -337,7 +391,6 @@ public class FormHasil extends javax.swing.JFrame {
     public JButton getBtn_delete() {
         return btn_delete;
     }
-
     public void setBtn_delete(JButton btn_delete) {
         this.btn_delete = btn_delete;
     }
@@ -345,7 +398,6 @@ public class FormHasil extends javax.swing.JFrame {
     public JButton getBtn_insert() {
         return btn_insert;
     }
-
     public void setBtn_insert(JButton btn_insert) {
         this.btn_insert = btn_insert;
     }
@@ -353,79 +405,14 @@ public class FormHasil extends javax.swing.JFrame {
     public JButton getBtn_update() {
         return btn_update;
     }
-
     public void setBtn_update(JButton btn_update) {
         this.btn_update = btn_update;
     }
 
-    public JScrollPane getjScrollPane1() {
-        return jScrollPane1;
-    }
-
-    public void setjScrollPane1(JScrollPane jScrollPane1) {
-        this.jScrollPane1 = jScrollPane1;
-    }
-
-    public JTabbedPane getjTabbedPane2() {
-        return jTabbedPane2;
-    }
-
-    public void setjTabbedPane2(JTabbedPane jTabbedPane2) {
-        this.jTabbedPane2 = jTabbedPane2;
-    }
-
-    public JTable getjTable1() {
-        return jTable1;
-    }
-
-    public void setjTable1(JTable jTable1) {
-        this.jTable1 = jTable1;
-    }
-
-    public JTextField getTf_hargabbt() {
-        return tf_hargabbt;
-    }
-
-    public void setTf_hargabbt(JTextField tf_hargabbt) {
-        this.tf_hargabbt = tf_hargabbt;
-    }
-
-    public JTextField getTf_hargakg() {
-        return tf_hargakg;
-    }
-
-    public void setTf_hargakg(JTextField tf_hargakg) {
-        this.tf_hargakg = tf_hargakg;
-    }
-
-    public JTextField getTf_hasil() {
-        return tf_hasil;
-    }
-
-    public void setTf_hasil(JTextField tf_hasil) {
-        this.tf_hasil = tf_hasil;
-    }
-
-    public JTextField getTf_nama() {
-        return tf_nama;
-    }
-
-    public void setTf_nama(JTextField tf_nama) {
-        this.tf_nama = tf_nama;
-    }
-
-    public JTextField getTf_perawatan() {
-        return tf_perawatan;
-    }
-
-    public void setTf_perawatan(JTextField tf_perawatan) {
-        this.tf_perawatan = tf_perawatan;
-    }
-
+    //CARI =======================================
     public JButton getBtn_search() {
         return btn_search;
     }
-
     public void setBtn_search(JButton btn_search) {
         this.btn_search = btn_search;
     }
@@ -433,11 +420,63 @@ public class FormHasil extends javax.swing.JFrame {
     public JTextField getTf_search() {
         return tf_search;
     }
-
     public void setTf_search(JTextField tf_search) {
         this.tf_search = tf_search;
     }
     
-    
+    //TABEL =======================================
+    public JTable getjTable1() {
+        return jTable1;
+    }
+    public void setjTable1(JTable jTable1) {
+        this.jTable1 = jTable1;
+    }
 
+    //NO =======================================
+    public JTextField getTf_no() {
+        return tf_no;
+    }
+    public void setTf_no(JTextField tf_no) {
+        this.tf_no = tf_no;
+    }
+    
+    //NAMA =======================================
+    public JTextField getTf_nama() {
+        return tf_nama;
+    }
+    public void setTf_nama(JTextField tf_nama) {
+        this.tf_nama = tf_nama;
+    }
+
+    //HARGA BIBIT =======================================
+    public JTextField getTf_hargabbt() {
+        return tf_hargabbt;
+    }
+    public void setTf_hargabbt(JTextField tf_hargabbt) {
+        this.tf_hargabbt = tf_hargabbt;
+    }
+    
+    //BIAYA PERAWATAN =======================================
+    public JTextField getTf_perawatan() {
+        return tf_perawatan;
+    }
+    public void setTf_perawatan(JTextField tf_perawatan) {
+        this.tf_perawatan = tf_perawatan;
+    }
+
+    //HASIL BERAT =======================================
+    public JTextField getTf_hasil() {
+        return tf_hasil;
+    }
+    public void setTf_hasil(JTextField tf_hasil) {
+        this.tf_hasil = tf_hasil;
+    }
+    
+    //HASIL HARGA PER KG =======================================
+    public JTextField getTf_hargakg() {
+        return tf_hargakg;
+    }
+    public void setTf_hargakg(JTextField tf_hargakg) {
+        this.tf_hargakg = tf_hargakg;
+    }
 }
