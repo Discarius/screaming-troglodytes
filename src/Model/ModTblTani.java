@@ -28,7 +28,7 @@ public class ModTblTani extends AbstractTableModel{
 
     @Override
     public int getColumnCount() {
-        return 9;   
+        return 5;   
     }
 
     @Override
@@ -38,19 +38,25 @@ public class ModTblTani extends AbstractTableModel{
                 return lmb.get(row).getNo();
             case 1:
                 return lmb.get(row).getNama_bibit();
+//            case 2:
+//                return lmb.get(row).getHarga_bibit();
+//            case 3:
+//                return lmb.get(row).getBiaya_perawatan();
+//            case 4:
+//                return lmb.get(row).getHasil_kg();
+//            case 5:
+//                return lmb.get(row).getHasil_harga_kg();
+//            case 6:
+//                return lmb.get(row).getModal();
+//            case 7:
+//                return lmb.get(row).getTotal_hasil();
+//            case 8:
+//                return lmb.get(row).getRatio_kotor();
             case 2:
-                return lmb.get(row).getHarga_bibit();
-            case 3:
-                return lmb.get(row).getBiaya_perawatan();
-            case 4:
-                return lmb.get(row).getHasil_kg();
-            case 5:
-                return lmb.get(row).getHasil_harga_kg();
-            case 6:
                 return lmb.get(row).getModal();
-            case 7:
+            case 3:
                 return lmb.get(row).getTotal_hasil();
-            case 8:
+            case 4:
                 return lmb.get(row).getRatio_kotor();
             default:
                 return null;       
@@ -64,19 +70,25 @@ public class ModTblTani extends AbstractTableModel{
                 return "No";
             case 1:
                 return "Tanaman";
+//            case 2:
+//                return "Harga Bibit";
+//            case 3:
+//                return "Perawatan";
+//            case 4:
+//                return "Berat Panen";
+//            case 5:
+//                return "Harga / Kg";
+//            case 6:
+//                return "Modal";
+//            case 7:
+//                return "Total Hasil";
+//            case 8:
+//                return "Ratio Kotor";
             case 2:
-                return "Harga Bibit";
-            case 3:
-                return "Perawatan";
-            case 4:
-                return "Berat Panen";
-            case 5:
-                return "Harga / Kg";
-            case 6:
                 return "Modal";
-            case 7:
+            case 3:
                 return "Total Hasil";
-            case 8:
+            case 4:
                 return "Ratio Kotor";
             default:
                 return null;
