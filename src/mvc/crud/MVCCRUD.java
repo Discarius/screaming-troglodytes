@@ -5,6 +5,8 @@
  */
 package mvc.crud;
 
+import View.FormHasil;
+
 /**
  *
  * @author Daff
@@ -15,7 +17,7 @@ public class MVCCRUD {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        new FormHasil().setVisible(true);
     }
     
 }

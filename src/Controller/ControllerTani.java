@@ -66,6 +66,9 @@ public class ControllerTani {
             mb.setBiaya_perawatan(Double.valueOf(frame.getTf_perawatan().getText()));
             mb.setHasil_kg(Double.valueOf(frame.getTf_hasil().getText()));
             mb.setHasil_harga_kg(Double.valueOf(frame.getTf_hargakg().getText()));
+            mb.setModal(mb.getHarga_bibit()+mb.getBiaya_perawatan());
+            mb.setTotal_hasil(mb.getHasil_kg()*mb.getHasil_harga_kg());
+            mb.setRatio_kotor((mb.getTotal_hasil()-mb.getModal())/mb.getTotal_hasil()*100);
             
             ImplementTani.insert(mb);
             JOptionPane.showMessageDialog(null, "Data saved");
@@ -96,6 +99,9 @@ public class ControllerTani {
             mb.setBiaya_perawatan(Double.valueOf(frame.getTf_perawatan().getText()));
             mb.setHasil_kg(Double.valueOf(frame.getTf_hasil().getText()));
             mb.setHasil_harga_kg(Double.valueOf(frame.getTf_hargakg().getText()));
+            mb.setModal(mb.getHarga_bibit()+mb.getBiaya_perawatan());
+            mb.setTotal_hasil(mb.getHasil_kg()*mb.getHasil_harga_kg());
+            mb.setRatio_kotor((mb.getTotal_hasil()-mb.getModal())/mb.getTotal_hasil()*100);
             
             ImplementTani.update(mb);
             JOptionPane.showMessageDialog(null, "Data updated");
